@@ -99,19 +99,35 @@ export default function Game () {
         setCurrentMove(nextMove);
     }
 
+    //returns a button which has the text to Go to a certain point in the game
     const moves = history.map((squares, move)=> {
+        console.log(move, squares);
+        console.log(currentMove);
         let description;
-        if(move >0){
-            description = 'Go to move #' + move;
+        let moveIsCurrentMove;
+        //if the move is the current move use this text and don't append text to the button 
+        if(move === currentMove){
+            moveIsCurrentMove = 'You are on move#' + move;
         }
+
+        //if this is not the first nor current move return below
+        else if(move >0){
+            description = 'Go to move#'+ move;
+        }
+
+        //if this is the first which is not the current move then set below
         else{
             description = 'Go to game start';
         }
+
+        //return either button or text - button is hidden if array is the current Move 
         return (
             <li key={move}>
-                <button onClick={() => jumpTo(move)}>
+                
+                <button onClick={() => jumpTo(move)} hidden={moveIsCurrentMove}>
                     {description}
                 </button>
+                {moveIsCurrentMove}
             </li>
         )
     }
