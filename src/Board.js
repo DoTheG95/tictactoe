@@ -27,19 +27,19 @@ function Board({ xisNext, squares, onPlay }) {
     }
 
     const winner = CalculateWinner(squares);
-    let status;
-    //if winner is decided status = winner side
+    let gameProgression;
+    //if winner is decided gameProgression = winner side
     if (winner){
-        status = "Winner: " + winner;
+        gameProgression = "Winner: " + winner;
     }
 
     else{
-        status = "Next Player: " + (xisNext ? "X" : "O");
+        gameProgression = "Next Player: " + (xisNext ? "X" : "O");
     }
 
     return (
         <>
-        <div className="status">{status}</div>
+        <div className="gameProgression">{gameProgression}</div>
         <div className='board-row'>
             <Square value={squares[0]} onSquareClick = {() => handleClick(0)}/>
             <Square value={squares[1]} onSquareClick = {() => handleClick(1)}/>
